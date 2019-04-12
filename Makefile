@@ -108,7 +108,8 @@ ifeq ($(arch), $(filter $(arch), x86_64 aarch64))
 	@cd $(out_dir) && tar xvf ../../$(alpine)
 endif
 
-build: rust ucore biscuit $(busybox) nginx redis
+build: rust ucore biscuit $(busybox) redis
+# nginx
 
 sfsimg: $(out_qcow2)
 

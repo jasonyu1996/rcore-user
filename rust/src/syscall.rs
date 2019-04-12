@@ -171,6 +171,10 @@ pub fn sys_mmap(addr: usize, len: usize, prot: usize, flags: usize, fd: usize, o
     sys_call(SyscallId::Mmap, addr, len, prot, flags, fd, offset)
 }
 
+pub fn sys_register_ih(int_id: usize, addr: usize) -> i32 {
+    sys_call(SyscallId::RegIh, int_id, addr, 0, 0, 0, 0)
+}
+
 #[cfg(target_arch = "x86_64")]
 #[allow(dead_code)]
 enum SyscallId {
@@ -202,6 +206,7 @@ enum SyscallId {
     // custom
     MapPciDevice = 999,
     GetPaddr = 998,
+    RegIh = 997,
 }
 
 #[cfg(not(target_arch = "x86_64"))]
